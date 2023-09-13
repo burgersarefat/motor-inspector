@@ -88,6 +88,10 @@ void opcontrol() {
 		double torque = motor.get_torque();
 		std::string torque_string = std::to_string(torque);
 
+		bool is_over_temp = motor.is_over_temp();
+    	std::string over_temp_string = is_over_temp ? "Yes" : "No";
+
+
 		// Motor velocity (percent)
 		motor.move(100);
 		pros::delay(1000);
@@ -99,6 +103,7 @@ void opcontrol() {
 		pros::delay(20);
 		pros::lcd::set_text(4, "Torque (nM): " + torque_string);
 		pros::delay(20);
- 	
+		pros::lcd::set_text(5, "Overheating?: " + over_temp_string);
+    	pros::delay(20);
 	}
 }
